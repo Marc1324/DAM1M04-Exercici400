@@ -1,0 +1,137 @@
+:root {
+    --bg-color: #fabc6c;
+    --text-color: #25241e;
+    --accent-orange: #f0804d; /* Color Haikyuu */
+    --accent-blue: #42000096;
+    --shadow-light: #d86e31;
+    --shadow-dark: #fd7324;
+    
+    /* NOU: Color pel fons del tauler (la casella buida) */
+    --tauler-interior: #ebdf9a; 
+    
+    --mida-tauler: 300px;
+    --mida-casella: 100px;
+}
+
+body {
+    
+    background: linear-gradient(47deg, var(--bg-color) 0%, var(--accent-orange) 100%);
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.contenidor-joc {
+    background: black;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 20px 20px 60px var(--shadow-dark), 
+               -20px -20px 60px var(--shadow-light);
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 900;
+}
+
+.tauler-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.marcador {
+    font-weight: bold;
+    font-size: 1.2rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-radius: 12px;
+    padding: 12px 25px;
+}
+
+button {
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1.2rem;
+}
+
+button:hover {
+    color: var(--accent-orange);
+    box-shadow: 3px 3px 6px var(--shadow-dark), 
+               -3px -3px 6px var(--shadow-light);
+}
+
+button:active {
+    box-shadow: inset 4px 4px 8px var(--shadow-dark), 
+               inset -4px -4px 8px var(--shadow-light);
+}
+
+#tauler-puzle {
+    width: var(--mida-tauler);
+    height: var(--mida-tauler);
+    position: relative;
+    /* CANVIAT: Ara el fons és fosc per la casella buida */
+    background-color: var(--tauler-interior);
+    border-radius: 15px;
+    margin: 0 auto;
+    /* Ombra interior per donar profunditat al tauler */
+    box-shadow: inset 8px 8px 20px rgba(0,0,0,0.4);
+    overflow: hidden;
+    /* Marc blanc de fora com a la teva imatge */
+    border: 8px solid var(--bg-color);
+}
+
+.casella {
+    width: var(--mida-casella);
+    height: var(--mida-casella);
+    position: absolute;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    background-image: url('imatges/haikyuu.png');
+    background-size: var(--mida-tauler) var(--mida-tauler);
+    
+    cursor: pointer;
+    border-radius: 8px;
+    /* CANVIAT: Vora que coincideix amb el fons del tauler per marcar els talls */
+    border: 2px solid var(--tauler-interior);
+    box-sizing: border-box;
+}
+
+.casella:hover {
+    filter: contrast(1.1) brightness(1.1);
+    z-index: 5;
+}
+
+#missatge-resolt {
+    margin-top: 25px;
+    padding: 15px;
+    background: #faba0c;
+    border-radius: 10px;
+    color: white; /* Perquè es llegeixi sobre el blau */
+    font-weight: bold;
+    box-shadow: inset 4px 4px 8px #f5b402, inset -4px -4px 8px #000000;
+    animation: fadeIn 0.5s ease;
+}
+
+.ocult { display: none; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
